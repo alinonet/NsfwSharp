@@ -39,7 +39,7 @@ Integrate NsfwSharp into your project by following these simple steps:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/NsfwSharp.git
+   git clone https://github.com/ZygoteCode/NsfwSharp.git
    cd NsfwSharp
    ```
 
