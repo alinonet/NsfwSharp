@@ -1,0 +1,17 @@
+@baseUrl = http://localhost:5000
+@requestToken = paste-the-RequestToken-value-from-the-first-response
+
+### Get an antiforgery token before uploading
+GET {{baseUrl}}/api/antiforgery
+
+### Upload an image (replace ./sample.jpg with a local image path)
+POST {{baseUrl}}/api/analyze
+X-CSRF-TOKEN: {{requestToken}}
+Content-Type: multipart/form-data; boundary=----NsfwSharpBoundary
+
+------NsfwSharpBoundary
+Content-Disposition: form-data; name="files"; filename="sample.jpg"
+Content-Type: image/jpeg
+
+< ./sample.jpg
+------NsfwSharpBoundary--

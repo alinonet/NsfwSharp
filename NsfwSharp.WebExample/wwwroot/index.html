@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f3ed">
+  <title>NsfwSharp | Analisi locale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="wordmark" href="/" aria-label="NsfwSharp, home">
+      <span class="mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>NSFW<span class="wordmark-light">SHARP</span></span>
+    </a>
+    <div class="runtime"><span class="runtime-dot"></span><span>Elaborazione locale</span></div>
+  </header>
+
+  <main>
+    <section class="workspace" aria-label="Analisi contenuti">
+      <div class="controls">
+        <div class="section-heading">
+          <span class="step-index">01</span>
+          <div><h2>Configura analisi</h2><p>Scegli il modello e il contenuto.</p></div>
+        </div>
+
+        <label class="field-label" for="model-select">Modello di rilevamento</label>
+        <div class="select-wrap">
+          <select id="model-select" disabled>
+            <option value="">Caricamento modelli...</option>
+          </select>
+          <span class="select-chevron" aria-hidden="true">⌄</span>
+        </div>
+        <div class="field-label mode-label">Sorgente</div>
+        <div class="mode-switch" role="group" aria-label="Tipo di sorgente">
+          <button class="mode-button is-active" type="button" data-mode="images" aria-pressed="true">
+            <span aria-hidden="true">▧</span> Immagini
+          </button>
+          <button class="mode-button" type="button" data-mode="video" aria-pressed="false">
+            <span aria-hidden="true">▷</span> Video
+          </button>
+        </div>
+
+        <div class="upload-panel" id="image-panel">
+          <label class="dropzone" id="image-dropzone" for="image-input" tabindex="0">
+            <input id="image-input" type="file" accept="image/*" multiple hidden>
+            <span class="upload-icon" aria-hidden="true">＋</span>
+            <span class="drop-title">Trascina qui le immagini</span>
+            <span class="drop-subtitle">oppure <span class="browse-link">scegli i file</span></span>
+            <span class="drop-limit">Fino a 12 immagini · 10 MB ciascuna</span>
+          </label>
+        </div>
+
+        <div class="upload-panel" id="video-panel" hidden>
+          <label class="dropzone video-dropzone" id="video-dropzone" for="video-input" tabindex="0">
+            <input id="video-input" type="file" accept="video/*" hidden>
+            <span class="upload-icon video-icon" aria-hidden="true">▷</span>
+            <span class="drop-title">Trascina qui un video</span>
+            <span class="drop-subtitle">oppure <span class="browse-link">scegli un file</span></span>
+            <span class="drop-limit">6 frame ai punti 1/7–6/7 · max 500 MB</span>
+          </label>
+          <p class="video-name" id="video-name" hidden></p>
+        </div>
+
+        <div class="selection" id="selection" hidden>
+          <div class="selection-heading"><span id="selection-count"></span><button id="clear-selection" class="text-button" type="button">Rimuovi</button></div>
+          <ul class="file-list" id="file-list"></ul>
+        </div>
+
+        <div class="form-error" id="form-error" role="alert" hidden></div>
+        <button class="analyze-button" id="analyze-button" type="button" disabled>
+          <span class="button-spinner" aria-hidden="true"></span>
+          <span class="button-label">Avvia analisi</span>
+          <span class="button-arrow" aria-hidden="true">↗</span>
+        </button>
+        <p class="privacy-note"><span aria-hidden="true">◈</span> Nessun file viene conservato sul server.</p>
+      </div>
+
+      <section class="results" aria-labelledby="results-title" aria-live="polite">
+        <div class="section-heading results-heading">
+          <span class="step-index">02</span>
+          <div><h2 id="results-title">Risultati</h2><p id="results-subtitle">Le rilevazioni appariranno qui.</p></div>
+          <span class="result-count" id="result-count" hidden></span>
+        </div>
+        <div class="progress-state" id="progress-state" hidden>
+          <p id="progress-message">Preparazione analisi…</p>
+          <progress class="progress-track" id="progress-bar" value="0" max="1" aria-label="Avanzamento analisi"></progress>
+        </div>
+        <div class="result-grid" id="result-grid"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer><span>NSFWSHARP / 01</span><span>YOLOv11 OBJECT DETECTION</span></footer>
+</body>
+</html>
